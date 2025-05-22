@@ -1,0 +1,1998 @@
+
+
+الحمد لله
+اشتغل
+LightRAG-1.3.7
+ف ويندوز10
+على المعالج زيون والرامات64
+اناكوندا
+فيجوال استديو2022
+بايثون3.11
+
+
+
+
+
+pip install httpx
+
+
+cd "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7"
+pip install -r requirements.txt
+
+
+python -m pip install nest_asyncio
+
+python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+
+
+
+
+
+حذفت.to("cuda")
+lightrag/llm/hf.py
+
+
+
+    input_ids = hf_tokenizer(
+        input_prompt, return_tensors="pt", padding=True, truncation=True
+    ).to("cuda")
+    inputs = {k: v.to(hf_model.device) for k, v in input_ids.items()}
+    output = hf_model.generate(
+        **input_ids, max_new_tokens=512, num_return_sequences=1, early_stopping=True
+    )
+    response_text = hf_tokenizer.decode(
+        output[0][len(inputs["input_ids"][0]) :], skip_special_tokens=True
+    )
+
+    return response_text
+
+
+
+
+
+
+
+
+
+
+(base) C:\Windows\system32>cd C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7
+
+(base) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>conda activate 1
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 15:55:03 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 4, in <module>
+    from lightrag.llm.hf import hf_model_complete, hf_embed
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 22, in <module>
+    from lightrag.exceptions import (
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\exceptions.py", line 3, in <module>
+    import httpx
+ModuleNotFoundError: No module named 'httpx'
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python -m pip install httpx
+Collecting httpx
+  Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting anyio (from httpx)
+  Using cached anyio-4.9.0-py3-none-any.whl.metadata (4.7 kB)
+Requirement already satisfied: certifi in c:\users\target store\appdata\roaming\python\python311\site-packages (from httpx) (2025.1.31)
+Collecting httpcore==1.* (from httpx)
+  Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: idna in c:\users\target store\appdata\roaming\python\python311\site-packages (from httpx) (3.10)
+Collecting h11>=0.16 (from httpcore==1.*->httpx)
+  Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting sniffio>=1.1 (from anyio->httpx)
+  Using cached sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Requirement already satisfied: typing_extensions>=4.5 in c:\programdata\anaconda3\envs\1\lib\site-packages (from anyio->httpx) (4.13.2)
+Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Using cached anyio-4.9.0-py3-none-any.whl (100 kB)
+Using cached sniffio-1.3.1-py3-none-any.whl (10 kB)
+Installing collected packages: sniffio, h11, httpcore, anyio, httpx
+Successfully installed anyio-4.9.0 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 sniffio-1.3.1
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 15:55:36 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 10, in <module>
+    import nest_asyncio
+ModuleNotFoundError: No module named 'nest_asyncio'
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>cd "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7"
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>pip install -r requirements.txt
+Requirement already satisfied: aiohttp in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 1)) (3.11.18)
+Requirement already satisfied: configparser in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 2)) (7.2.0)
+Requirement already satisfied: future in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 3)) (1.0.0)
+Requirement already satisfied: pandas>=2.0.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 6)) (2.2.3)
+Requirement already satisfied: pipmaster in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 10)) (0.7.2)
+Requirement already satisfied: pydantic in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 11)) (2.11.4)
+Requirement already satisfied: python-dotenv in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 12)) (1.1.0)
+Requirement already satisfied: pyuca in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 15)) (1.2)
+Requirement already satisfied: setuptools in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 17)) (78.1.1)
+Requirement already satisfied: tenacity in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 18)) (9.1.2)
+Requirement already satisfied: tiktoken in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 21)) (0.9.0)
+Requirement already satisfied: xlsxwriter>=3.1.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 22)) (3.2.3)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.1.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (1.3.2)
+Requirement already satisfied: attrs>=17.3.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (1.6.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (6.4.4)
+Requirement already satisfied: propcache>=0.2.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (0.3.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (1.20.0)
+Requirement already satisfied: idna>=2.0 in c:\users\target store\appdata\roaming\python\python311\site-packages (from yarl<2.0,>=1.17.0->aiohttp->-r requirements.txt (line 1)) (3.10)
+Requirement already satisfied: numpy>=1.23.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2.2.6)
+Requirement already satisfied: python-dateutil>=2.8.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2025.2)
+Requirement already satisfied: packaging>=21.0 in c:\users\target store\appdata\roaming\python\python311\site-packages (from pipmaster->-r requirements.txt (line 10)) (24.2)
+Requirement already satisfied: ascii_colors>=0.8.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pipmaster->-r requirements.txt (line 10)) (0.11.4)
+Requirement already satisfied: annotated-types>=0.6.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (2.33.2)
+Requirement already satisfied: typing-extensions>=4.12.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (4.13.2)
+Requirement already satisfied: typing-inspection>=0.4.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (0.4.1)
+Requirement already satisfied: regex>=2022.1.18 in c:\users\target store\appdata\roaming\python\python311\site-packages (from tiktoken->-r requirements.txt (line 21)) (2024.11.6)
+Requirement already satisfied: requests>=2.26.0 in c:\users\target store\appdata\roaming\python\python311\site-packages (from tiktoken->-r requirements.txt (line 21)) (2.32.3)
+Requirement already satisfied: wcwidth in c:\users\target store\appdata\roaming\python\python311\site-packages (from ascii_colors>=0.8.0->pipmaster->-r requirements.txt (line 10)) (0.2.13)
+Requirement already satisfied: six>=1.5 in c:\programdata\anaconda3\envs\1\lib\site-packages (from python-dateutil>=2.8.2->pandas>=2.0.0->-r requirements.txt (line 6)) (1.17.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\target store\appdata\roaming\python\python311\site-packages (from requests>=2.26.0->tiktoken->-r requirements.txt (line 21)) (3.4.1)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\target store\appdata\roaming\python\python311\site-packages (from requests>=2.26.0->tiktoken->-r requirements.txt (line 21)) (2.3.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\target store\appdata\roaming\python\python311\site-packages (from requests>=2.26.0->tiktoken->-r requirements.txt (line 21)) (2025.1.31)
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>pip install nest_asyncio
+Collecting nest_asyncio
+  Using cached nest_asyncio-1.6.0-py3-none-any.whl.metadata (2.8 kB)
+Using cached nest_asyncio-1.6.0-py3-none-any.whl (5.2 kB)
+Installing collected packages: nest_asyncio
+Successfully installed nest_asyncio-1.6.0
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 15:57:13 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 11456 Shared-Data created for Single Process
+2025-05-21 15:57:22 - pipmaster.package_manager - INFO - Executing: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade graspologic
+2025-05-21 15:59:03 - pipmaster.package_manager - INFO - Command succeeded: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade graspologic
+2025-05-21 15:59:03 - pipmaster.package_manager - INFO - Executing: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade nano-vectordb
+2025-05-21 15:59:06 - pipmaster.package_manager - INFO - Command succeeded: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade nano-vectordb
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 11456 initialized updated flags for namespace: [full_docs]
+INFO: Process 11456 ready to initialize storage namespace: [full_docs]
+INFO: Process 11456 initialized updated flags for namespace: [text_chunks]
+INFO: Process 11456 ready to initialize storage namespace: [text_chunks]
+INFO: Process 11456 initialized updated flags for namespace: [entities]
+INFO: Process 11456 initialized updated flags for namespace: [relationships]
+INFO: Process 11456 initialized updated flags for namespace: [chunks]
+INFO: Process 11456 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 11456 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 11456 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 11456 initialized updated flags for namespace: [doc_status]
+INFO: Process 11456 ready to initialize storage namespace: [doc_status]
+INFO: Process 11456 storage namespace already initialized: [full_docs]
+INFO: Process 11456 storage namespace already initialized: [text_chunks]
+INFO: Process 11456 storage namespace already initialized: [llm_response_cache]
+INFO: Process 11456 storage namespace already initialized: [doc_status]
+INFO: Process 11456 Pipeline namespace initialized
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 82, in <module>
+    main()
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 49, in main
+    with open("book.txt", "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'book.txt'
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 49
+    with open("C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\book.txt", "r", encoding="utf-8") as f:
+                                                                                                ^
+SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-3: truncated \UXXXXXXXX escape
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 16:02:51 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 4776 Shared-Data created for Single Process
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 4776 initialized updated flags for namespace: [full_docs]
+INFO: Process 4776 ready to initialize storage namespace: [full_docs]
+INFO: Process 4776 initialized updated flags for namespace: [text_chunks]
+INFO: Process 4776 ready to initialize storage namespace: [text_chunks]
+INFO: Process 4776 initialized updated flags for namespace: [entities]
+INFO: Process 4776 initialized updated flags for namespace: [relationships]
+INFO: Process 4776 initialized updated flags for namespace: [chunks]
+INFO: Process 4776 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 4776 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 4776 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 4776 initialized updated flags for namespace: [doc_status]
+INFO: Process 4776 ready to initialize storage namespace: [doc_status]
+INFO: Process 4776 storage namespace already initialized: [full_docs]
+INFO: Process 4776 storage namespace already initialized: [text_chunks]
+INFO: Process 4776 storage namespace already initialized: [llm_response_cache]
+INFO: Process 4776 storage namespace already initialized: [doc_status]
+INFO: Process 4776 Pipeline namespace initialized
+tokenizer_config.json: 100%|██████████████████████████████████████████████████████████████████| 350/350 [00:00<?, ?B/s]
+vocab.txt: 100%|█████████████████████████████████████████████████████████████████████| 232k/232k [00:00<00:00, 926kB/s]
+tokenizer.json: 100%|███████████████████████████████████████████████████████████████| 466k/466k [00:00<00:00, 1.57MB/s]
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████| 112/112 [00:00<?, ?B/s]
+config.json: 100%|████████████████████████████████████████████████████████████████████████████| 612/612 [00:00<?, ?B/s]
+Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+WARNING:huggingface_hub.file_download:Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+model.safetensors: 100%|██████████████████████████████████████████████████████████| 90.9M/90.9M [00:25<00:00, 3.58MB/s]
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc5-0ab73d47200f0ea87732b91a;1e0c7ab9-1216-4c19-b4d9-dc97657fb5ac)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc5-4cc9e4bb2235300c4fb51921;16bd5701-163d-441f-aebb-d4b91199c7a9)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc5-01aa607a262d305277cf6767;b34973d8-034a-4d42-8ac3-1e6132e015eb)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+Failed to extract entities and relationships: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 470, in cached_files
+    hf_hub_download(
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1008, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1115, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1643, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1531, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1448, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 310, in _request_wrapper
+    hf_raise_for_status(response)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 426, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1002, in process_document
+    await asyncio.gather(*tasks)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1200, in _process_entity_relation_graph    raise e
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1186, in _process_entity_relation_graph    chunk_results = await extract_entities(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 853, in extract_entities
+    raise task.exception()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 829, in _process_with_semaphore
+    return await _process_single_content(chunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 754, in _process_single_content
+    final_result = await use_llm_func_with_cache(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 1648, in use_llm_func_with_cache
+    res: str = await use_llm_func(input_text, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 65, in hf_model_if_cache
+    hf_model, hf_tokenizer = initialize_hf_model(model_name)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 38, in initialize_hf_model
+    hf_tokenizer = AutoTokenizer.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\tokenization_auto.py", line 970, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\configuration_auto.py", line 1153, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 595, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 654, in _get_config_dict
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 312, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 533, in cached_files
+    raise OSError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+Failed to extrat document 1/1: unknown_source
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc6-2c1b450267ed057917ab42ac;783fef85-ce57-483f-b9a4-196bfc20cc61)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 470, in cached_files
+    hf_hub_download(
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1008, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1115, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1643, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1531, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1448, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 310, in _request_wrapper
+    hf_raise_for_status(response)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 426, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-682e5bc6-2c1b450267ed057917ab42ac;783fef85-ce57-483f-b9a4-196bfc20cc61)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 82, in <module>
+    main()
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 54, in main
+    rag.query(
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1417, in query
+    return loop.run_until_complete(self.aquery(query, param, system_prompt))  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\nest_asyncio.py", line 98, in run_until_complete
+    return f.result()
+           ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1456, in aquery
+    response = await naive_query(
+               ^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 1961, in naive_query
+    response = await use_model_func(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 65, in hf_model_if_cache
+    hf_model, hf_tokenizer = initialize_hf_model(model_name)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 38, in initialize_hf_model
+    hf_tokenizer = AutoTokenizer.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\tokenization_auto.py", line 970, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\configuration_auto.py", line 1153, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 595, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 654, in _get_config_dict
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 312, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 533, in cached_files
+    raise OSError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc6-2c1b450267ed057917ab42ac;783fef85-ce57-483f-b9a4-196bfc20cc61)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>huggingface-cli login --token XXXXXXXXXXXXXXXXXXX
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
+Token is valid (permission: read).
+The token `read` has been saved to C:\Users\TARGET STORE\.cache\huggingface\stored_tokens
+Your token has been saved to C:\Users\TARGET STORE\.cache\huggingface\token
+Login successful.
+The current active token is: `read`
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 16:04:13 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 396 Shared-Data created for Single Process
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 396 initialized updated flags for namespace: [full_docs]
+INFO: Process 396 ready to initialize storage namespace: [full_docs]
+INFO: Process 396 initialized updated flags for namespace: [text_chunks]
+INFO: Process 396 ready to initialize storage namespace: [text_chunks]
+INFO: Process 396 initialized updated flags for namespace: [entities]
+INFO: Process 396 initialized updated flags for namespace: [relationships]
+INFO: Process 396 initialized updated flags for namespace: [chunks]
+INFO: Process 396 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 396 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 396 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 396 initialized updated flags for namespace: [doc_status]
+INFO: Process 396 ready to initialize storage namespace: [doc_status]
+INFO: Process 396 storage namespace already initialized: [full_docs]
+INFO: Process 396 storage namespace already initialized: [text_chunks]
+INFO: Process 396 storage namespace already initialized: [llm_response_cache]
+INFO: Process 396 storage namespace already initialized: [doc_status]
+INFO: Process 396 Pipeline namespace initialized
+tokenizer_config.json: 100%|██████████████████████████████████████████████████████████████| 54.5k/54.5k [00:00<?, ?B/s]
+tokenizer.json: 100%|█████████████████████████████████████████████████████████████| 9.09M/9.09M [00:02<00:00, 3.50MB/s]
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████| 296/296 [00:00<?, ?B/s]
+config.json: 100%|████████████████████████████████████████████████████████████████████████████| 878/878 [00:00<?, ?B/s]
+model.safetensors.index.json: 100%|███████████████████████████████████████████████████████| 20.9k/20.9k [00:00<?, ?B/s]
+Fetching 2 files:   0%|                                                                          | 0/2 [00:00<?, ?it/s]Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+WARNING:huggingface_hub.file_download:Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+WARNING:huggingface_hub.file_download:Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+model-00002-of-00002.safetensors: 100%|███████████████████████████████████████████| 1.46G/1.46G [14:22<00:00, 1.69MB/s]
+model-00001-of-00002.safetensors: 100%|███████████████████████████████████████████| 4.97G/4.97G [30:07<00:00, 2.75MB/s]
+Fetching 2 files: 100%|█████████████████████████████████████████████████████████████████| 2/2 [30:08<00:00, 904.02s/it]
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:02<00:00,  1.24s/it]
+generation_config.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 189/189 [00:00<?, ?B/s]
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+Failed to extract entities and relationships: Torch not compiled with CUDA enabled
+Traceback (most recent call last):
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1002, in process_document
+    await asyncio.gather(*tasks)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1200, in _process_entity_relation_graph
+    raise e
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1186, in _process_entity_relation_graph
+    chunk_results = await extract_entities(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 853, in extract_entities
+    raise task.exception()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 829, in _process_with_semaphore
+    return await _process_single_content(chunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 754, in _process_single_content
+    final_result = await use_llm_func_with_cache(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 1648, in use_llm_func_with_cache
+    res: str = await use_llm_func(input_text, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 107, in hf_model_if_cache
+    ).to("cuda")
+      ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 821, in to
+    self.data = {
+                ^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 822, in <dictcomp>
+    k: v.to(device=device, non_blocking=non_blocking) if isinstance(v, torch.Tensor) else v
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\cuda\__init__.py", line 363, in _lazy_init
+    raise AssertionError("Torch not compiled with CUDA enabled")
+AssertionError: Torch not compiled with CUDA enabled
+
+Failed to extrat document 1/1: unknown_source
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 82, in <module>
+    main()
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 54, in main
+    rag.query(
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1417, in query
+    return loop.run_until_complete(self.aquery(query, param, system_prompt))  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\nest_asyncio.py", line 98, in run_until_complete
+    return f.result()
+           ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1456, in aquery
+    response = await naive_query(
+               ^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 1961, in naive_query
+    response = await use_model_func(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 107, in hf_model_if_cache
+    ).to("cuda")
+      ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 821, in to
+    self.data = {
+                ^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 822, in <dictcomp>
+    k: v.to(device=device, non_blocking=non_blocking) if isinstance(v, torch.Tensor) else v
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\cuda\__init__.py", line 363, in _lazy_init
+    raise AssertionError("Torch not compiled with CUDA enabled")
+AssertionError: Torch not compiled with CUDA enabled
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 16:37:14 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 5792 Shared-Data created for Single Process
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 5792 initialized updated flags for namespace: [full_docs]
+INFO: Process 5792 ready to initialize storage namespace: [full_docs]
+INFO: Process 5792 initialized updated flags for namespace: [text_chunks]
+INFO: Process 5792 ready to initialize storage namespace: [text_chunks]
+INFO: Process 5792 initialized updated flags for namespace: [entities]
+INFO: Process 5792 initialized updated flags for namespace: [relationships]
+INFO: Process 5792 initialized updated flags for namespace: [chunks]
+INFO: Process 5792 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 5792 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 5792 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 5792 initialized updated flags for namespace: [doc_status]
+INFO: Process 5792 ready to initialize storage namespace: [doc_status]
+INFO: Process 5792 storage namespace already initialized: [full_docs]
+INFO: Process 5792 storage namespace already initialized: [text_chunks]
+INFO: Process 5792 storage namespace already initialized: [llm_response_cache]
+INFO: Process 5792 storage namespace already initialized: [doc_status]
+INFO: Process 5792 Pipeline namespace initialized
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████| 2/2 [00:02<00:00,  1.23s/it]
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###################################كودان ناجحان على المعالج
+lightrag_hf_demo.py
+
+import os
+
+from lightrag import LightRAG, QueryParam
+from lightrag.llm.hf import hf_model_complete, hf_embed
+from lightrag.utils import EmbeddingFunc
+from transformers import AutoModel, AutoTokenizer
+from lightrag.kg.shared_storage import initialize_pipeline_status
+
+import asyncio
+import nest_asyncio
+
+nest_asyncio.apply()
+
+WORKING_DIR = "./dickens"
+
+if not os.path.exists(WORKING_DIR):
+    os.mkdir(WORKING_DIR)
+
+
+async def initialize_rag():
+    rag = LightRAG(
+        working_dir=WORKING_DIR,
+        llm_model_func=hf_model_complete,
+        llm_model_name="Blancy/DeepSeek-R1-Distill-Qwen-0.5B-GRPO",
+        embedding_func=EmbeddingFunc(
+            embedding_dim=384,
+            max_token_size=11,
+            func=lambda texts: hf_embed(
+                texts,
+                tokenizer=AutoTokenizer.from_pretrained(
+                    "sentence-transformers/all-MiniLM-L6-v2"
+                ),
+                embed_model=AutoModel.from_pretrained(
+                    "sentence-transformers/all-MiniLM-L6-v2"
+                ),
+            ),
+        ),
+    )
+
+    await rag.initialize_storages()
+    await initialize_pipeline_status()
+
+    return rag
+
+
+def main():
+    rag = asyncio.run(initialize_rag())
+
+    with open(r"C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\book.txt", "r", encoding="utf-8") as f:
+        rag.insert(f.read())
+
+    # Perform naive search
+    print(
+        rag.query(
+            "What is Climate Change?", param=QueryParam(mode="naive")
+        )
+    )
+
+    # Perform local search
+    print(
+        rag.query(
+            "What is Climate Change?", param=QueryParam(mode="local")
+        )
+    )
+
+    # Perform global search
+    print(
+        rag.query(
+            "What is Climate Change?", param=QueryParam(mode="global")
+        )
+    )
+
+    # Perform hybrid search
+    print(
+        rag.query(
+            "What is Climate Change?", param=QueryParam(mode="hybrid")
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+
+
+
+
+
+hf.py
+
+
+import copy
+import os
+from functools import lru_cache
+
+import pipmaster as pm  # Pipmaster for dynamic library install
+
+# install specific modules
+if not pm.is_installed("transformers"):
+    pm.install("transformers")
+if not pm.is_installed("torch"):
+    pm.install("torch")
+if not pm.is_installed("numpy"):
+    pm.install("numpy")
+
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+    retry_if_exception_type,
+)
+from lightrag.exceptions import (
+    APIConnectionError,
+    RateLimitError,
+    APITimeoutError,
+)
+from lightrag.utils import (
+    locate_json_string_body_from_string,
+)
+import torch
+import numpy as np
+
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+
+@lru_cache(maxsize=1)
+def initialize_hf_model(model_name):
+    hf_tokenizer = AutoTokenizer.from_pretrained(
+        model_name, device_map="auto", trust_remote_code=True
+    )
+    hf_model = AutoModelForCausalLM.from_pretrained(
+        model_name, device_map="auto", trust_remote_code=True
+    )
+    if hf_tokenizer.pad_token is None:
+        hf_tokenizer.pad_token = hf_tokenizer.eos_token
+
+    return hf_model, hf_tokenizer
+
+
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=4, max=10),
+    retry=retry_if_exception_type(
+        (RateLimitError, APIConnectionError, APITimeoutError)
+    ),
+)
+async def hf_model_if_cache(
+    model,
+    prompt,
+    system_prompt=None,
+    history_messages=[],
+    **kwargs,
+) -> str:
+    model_name = model
+    hf_model, hf_tokenizer = initialize_hf_model(model_name)
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.extend(history_messages)
+    messages.append({"role": "user", "content": prompt})
+    kwargs.pop("hashing_kv", None)
+    input_prompt = ""
+    try:
+        input_prompt = hf_tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+    except Exception:
+        try:
+            ori_message = copy.deepcopy(messages)
+            if messages[0]["role"] == "system":
+                messages[1]["content"] = (
+                    "<system>"
+                    + messages[0]["content"]
+                    + "</system>\n"
+                    + messages[1]["content"]
+                )
+                messages = messages[1:]
+                input_prompt = hf_tokenizer.apply_chat_template(
+                    messages, tokenize=False, add_generation_prompt=True
+                )
+        except Exception:
+            len_message = len(ori_message)
+            for msgid in range(len_message):
+                input_prompt = (
+                    input_prompt
+                    + "<"
+                    + ori_message[msgid]["role"]
+                    + ">"
+                    + ori_message[msgid]["content"]
+                    + "</"
+                    + ori_message[msgid]["role"]
+                    + ">\n"
+                )
+
+    input_ids = hf_tokenizer(
+        input_prompt, return_tensors="pt", padding=True, truncation=True
+    )
+    inputs = {k: v.to(hf_model.device) for k, v in input_ids.items()}
+    output = hf_model.generate(
+        **input_ids, max_new_tokens=512, num_return_sequences=1, early_stopping=True
+    )
+    response_text = hf_tokenizer.decode(
+        output[0][len(inputs["input_ids"][0]) :], skip_special_tokens=True
+    )
+
+    return response_text
+
+
+async def hf_model_complete(
+    prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
+) -> str:
+    keyword_extraction = kwargs.pop("keyword_extraction", None)
+    model_name = kwargs["hashing_kv"].global_config["llm_model_name"]
+    result = await hf_model_if_cache(
+        model_name,
+        prompt,
+        system_prompt=system_prompt,
+        history_messages=history_messages,
+        **kwargs,
+    )
+    if keyword_extraction:  # TODO: use JSON API
+        return locate_json_string_body_from_string(result)
+    return result
+
+
+async def hf_embed(texts: list[str], tokenizer, embed_model) -> np.ndarray:
+    # Detect the appropriate device
+    if torch.cuda.is_available():
+        device = next(embed_model.parameters()).device  # Use CUDA if available
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")  # Use MPS for Apple Silicon
+    else:
+        device = torch.device("cpu")  # Fallback to CPU
+
+    # Move the model to the detected device
+    embed_model = embed_model.to(device)
+
+    # Tokenize the input texts and move them to the same device
+    encoded_texts = tokenizer(
+        texts, return_tensors="pt", padding=True, truncation=True
+    ).to(device)
+
+    # Perform inference
+    with torch.no_grad():
+        outputs = embed_model(
+            input_ids=encoded_texts["input_ids"],
+            attention_mask=encoded_texts["attention_mask"],
+        )
+        embeddings = outputs.last_hidden_state.mean(dim=1)
+
+    # Convert embeddings to NumPy
+    if embeddings.dtype == torch.bfloat16:
+        return embeddings.detach().to(torch.float32).cpu().numpy()
+    else:
+        return embeddings.detach().cpu().numpy()
+
+
+
+
+
+
+
+#######################################
+
+(base) C:\Windows\system32>cd C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7
+
+(base) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>conda activate 1
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 15:55:03 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 4, in <module>
+    from lightrag.llm.hf import hf_model_complete, hf_embed
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 22, in <module>
+    from lightrag.exceptions import (
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\exceptions.py", line 3, in <module>
+    import httpx
+ModuleNotFoundError: No module named 'httpx'
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python -m pip install httpx
+Collecting httpx
+  Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting anyio (from httpx)
+  Using cached anyio-4.9.0-py3-none-any.whl.metadata (4.7 kB)
+Requirement already satisfied: certifi in c:\users\target store\appdata\roaming\python\python311\site-packages (from httpx) (2025.1.31)
+Collecting httpcore==1.* (from httpx)
+  Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: idna in c:\users\target store\appdata\roaming\python\python311\site-packages (from httpx) (3.10)
+Collecting h11>=0.16 (from httpcore==1.*->httpx)
+  Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting sniffio>=1.1 (from anyio->httpx)
+  Using cached sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Requirement already satisfied: typing_extensions>=4.5 in c:\programdata\anaconda3\envs\1\lib\site-packages (from anyio->httpx) (4.13.2)
+Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Using cached anyio-4.9.0-py3-none-any.whl (100 kB)
+Using cached sniffio-1.3.1-py3-none-any.whl (10 kB)
+Installing collected packages: sniffio, h11, httpcore, anyio, httpx
+Successfully installed anyio-4.9.0 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 sniffio-1.3.1
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 15:55:36 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 10, in <module>
+    import nest_asyncio
+ModuleNotFoundError: No module named 'nest_asyncio'
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>cd "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7"
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>pip install -r requirements.txt
+Requirement already satisfied: aiohttp in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 1)) (3.11.18)
+Requirement already satisfied: configparser in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 2)) (7.2.0)
+Requirement already satisfied: future in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 3)) (1.0.0)
+Requirement already satisfied: pandas>=2.0.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 6)) (2.2.3)
+Requirement already satisfied: pipmaster in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 10)) (0.7.2)
+Requirement already satisfied: pydantic in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 11)) (2.11.4)
+Requirement already satisfied: python-dotenv in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 12)) (1.1.0)
+Requirement already satisfied: pyuca in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 15)) (1.2)
+Requirement already satisfied: setuptools in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 17)) (78.1.1)
+Requirement already satisfied: tenacity in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 18)) (9.1.2)
+Requirement already satisfied: tiktoken in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 21)) (0.9.0)
+Requirement already satisfied: xlsxwriter>=3.1.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from -r requirements.txt (line 22)) (3.2.3)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.1.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (1.3.2)
+Requirement already satisfied: attrs>=17.3.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (1.6.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (6.4.4)
+Requirement already satisfied: propcache>=0.2.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (0.3.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from aiohttp->-r requirements.txt (line 1)) (1.20.0)
+Requirement already satisfied: idna>=2.0 in c:\users\target store\appdata\roaming\python\python311\site-packages (from yarl<2.0,>=1.17.0->aiohttp->-r requirements.txt (line 1)) (3.10)
+Requirement already satisfied: numpy>=1.23.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2.2.6)
+Requirement already satisfied: python-dateutil>=2.8.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pandas>=2.0.0->-r requirements.txt (line 6)) (2025.2)
+Requirement already satisfied: packaging>=21.0 in c:\users\target store\appdata\roaming\python\python311\site-packages (from pipmaster->-r requirements.txt (line 10)) (24.2)
+Requirement already satisfied: ascii_colors>=0.8.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pipmaster->-r requirements.txt (line 10)) (0.11.4)
+Requirement already satisfied: annotated-types>=0.6.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (2.33.2)
+Requirement already satisfied: typing-extensions>=4.12.2 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (4.13.2)
+Requirement already satisfied: typing-inspection>=0.4.0 in c:\programdata\anaconda3\envs\1\lib\site-packages (from pydantic->-r requirements.txt (line 11)) (0.4.1)
+Requirement already satisfied: regex>=2022.1.18 in c:\users\target store\appdata\roaming\python\python311\site-packages (from tiktoken->-r requirements.txt (line 21)) (2024.11.6)
+Requirement already satisfied: requests>=2.26.0 in c:\users\target store\appdata\roaming\python\python311\site-packages (from tiktoken->-r requirements.txt (line 21)) (2.32.3)
+Requirement already satisfied: wcwidth in c:\users\target store\appdata\roaming\python\python311\site-packages (from ascii_colors>=0.8.0->pipmaster->-r requirements.txt (line 10)) (0.2.13)
+Requirement already satisfied: six>=1.5 in c:\programdata\anaconda3\envs\1\lib\site-packages (from python-dateutil>=2.8.2->pandas>=2.0.0->-r requirements.txt (line 6)) (1.17.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\target store\appdata\roaming\python\python311\site-packages (from requests>=2.26.0->tiktoken->-r requirements.txt (line 21)) (3.4.1)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\target store\appdata\roaming\python\python311\site-packages (from requests>=2.26.0->tiktoken->-r requirements.txt (line 21)) (2.3.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\target store\appdata\roaming\python\python311\site-packages (from requests>=2.26.0->tiktoken->-r requirements.txt (line 21)) (2025.1.31)
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>pip install nest_asyncio
+Collecting nest_asyncio
+  Using cached nest_asyncio-1.6.0-py3-none-any.whl.metadata (2.8 kB)
+Using cached nest_asyncio-1.6.0-py3-none-any.whl (5.2 kB)
+Installing collected packages: nest_asyncio
+Successfully installed nest_asyncio-1.6.0
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 15:57:13 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 11456 Shared-Data created for Single Process
+2025-05-21 15:57:22 - pipmaster.package_manager - INFO - Executing: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade graspologic
+2025-05-21 15:59:03 - pipmaster.package_manager - INFO - Command succeeded: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade graspologic
+2025-05-21 15:59:03 - pipmaster.package_manager - INFO - Executing: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade nano-vectordb
+2025-05-21 15:59:06 - pipmaster.package_manager - INFO - Command succeeded: C:\ProgramData\anaconda3\envs\1\python.exe -m pip install --upgrade nano-vectordb
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 11456 initialized updated flags for namespace: [full_docs]
+INFO: Process 11456 ready to initialize storage namespace: [full_docs]
+INFO: Process 11456 initialized updated flags for namespace: [text_chunks]
+INFO: Process 11456 ready to initialize storage namespace: [text_chunks]
+INFO: Process 11456 initialized updated flags for namespace: [entities]
+INFO: Process 11456 initialized updated flags for namespace: [relationships]
+INFO: Process 11456 initialized updated flags for namespace: [chunks]
+INFO: Process 11456 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 11456 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 11456 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 11456 initialized updated flags for namespace: [doc_status]
+INFO: Process 11456 ready to initialize storage namespace: [doc_status]
+INFO: Process 11456 storage namespace already initialized: [full_docs]
+INFO: Process 11456 storage namespace already initialized: [text_chunks]
+INFO: Process 11456 storage namespace already initialized: [llm_response_cache]
+INFO: Process 11456 storage namespace already initialized: [doc_status]
+INFO: Process 11456 Pipeline namespace initialized
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 82, in <module>
+    main()
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 49, in main
+    with open("book.txt", "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'book.txt'
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 49
+    with open("C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\book.txt", "r", encoding="utf-8") as f:
+                                                                                                ^
+SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-3: truncated \UXXXXXXXX escape
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 16:02:51 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 4776 Shared-Data created for Single Process
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 4776 initialized updated flags for namespace: [full_docs]
+INFO: Process 4776 ready to initialize storage namespace: [full_docs]
+INFO: Process 4776 initialized updated flags for namespace: [text_chunks]
+INFO: Process 4776 ready to initialize storage namespace: [text_chunks]
+INFO: Process 4776 initialized updated flags for namespace: [entities]
+INFO: Process 4776 initialized updated flags for namespace: [relationships]
+INFO: Process 4776 initialized updated flags for namespace: [chunks]
+INFO: Process 4776 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 4776 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 4776 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 4776 initialized updated flags for namespace: [doc_status]
+INFO: Process 4776 ready to initialize storage namespace: [doc_status]
+INFO: Process 4776 storage namespace already initialized: [full_docs]
+INFO: Process 4776 storage namespace already initialized: [text_chunks]
+INFO: Process 4776 storage namespace already initialized: [llm_response_cache]
+INFO: Process 4776 storage namespace already initialized: [doc_status]
+INFO: Process 4776 Pipeline namespace initialized
+tokenizer_config.json: 100%|██████████████████████████████████████████████████████████████████| 350/350 [00:00<?, ?B/s]
+vocab.txt: 100%|█████████████████████████████████████████████████████████████████████| 232k/232k [00:00<00:00, 926kB/s]
+tokenizer.json: 100%|███████████████████████████████████████████████████████████████| 466k/466k [00:00<00:00, 1.57MB/s]
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████| 112/112 [00:00<?, ?B/s]
+config.json: 100%|████████████████████████████████████████████████████████████████████████████| 612/612 [00:00<?, ?B/s]
+Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+WARNING:huggingface_hub.file_download:Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+model.safetensors: 100%|██████████████████████████████████████████████████████████| 90.9M/90.9M [00:25<00:00, 3.58MB/s]
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc5-0ab73d47200f0ea87732b91a;1e0c7ab9-1216-4c19-b4d9-dc97657fb5ac)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc5-4cc9e4bb2235300c4fb51921;16bd5701-163d-441f-aebb-d4b91199c7a9)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc5-01aa607a262d305277cf6767;b34973d8-034a-4d42-8ac3-1e6132e015eb)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+Failed to extract entities and relationships: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 470, in cached_files
+    hf_hub_download(
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1008, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1115, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1643, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1531, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1448, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 310, in _request_wrapper
+    hf_raise_for_status(response)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 426, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1002, in process_document
+    await asyncio.gather(*tasks)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1200, in _process_entity_relation_graph    raise e
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1186, in _process_entity_relation_graph    chunk_results = await extract_entities(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 853, in extract_entities
+    raise task.exception()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 829, in _process_with_semaphore
+    return await _process_single_content(chunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 754, in _process_single_content
+    final_result = await use_llm_func_with_cache(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 1648, in use_llm_func_with_cache
+    res: str = await use_llm_func(input_text, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 65, in hf_model_if_cache
+    hf_model, hf_tokenizer = initialize_hf_model(model_name)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 38, in initialize_hf_model
+    hf_tokenizer = AutoTokenizer.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\tokenization_auto.py", line 970, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\configuration_auto.py", line 1153, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 595, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 654, in _get_config_dict
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 312, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 533, in cached_files
+    raise OSError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc4-4ad1b901176036667b85cc88;f62e0766-b3a7-48ec-930f-256e63dab0ca)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+Failed to extrat document 1/1: unknown_source
+limit_async: Error in decorated function: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc6-2c1b450267ed057917ab42ac;783fef85-ce57-483f-b9a4-196bfc20cc61)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\TARGET STORE\AppData\Roaming\Python\Python311\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 470, in cached_files
+    hf_hub_download(
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1008, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1115, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1643, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1531, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 1448, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\file_download.py", line 310, in _request_wrapper
+    hf_raise_for_status(response)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\huggingface_hub\utils\_http.py", line 426, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-682e5bc6-2c1b450267ed057917ab42ac;783fef85-ce57-483f-b9a4-196bfc20cc61)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 82, in <module>
+    main()
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 54, in main
+    rag.query(
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1417, in query
+    return loop.run_until_complete(self.aquery(query, param, system_prompt))  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\nest_asyncio.py", line 98, in run_until_complete
+    return f.result()
+           ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1456, in aquery
+    response = await naive_query(
+               ^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 1961, in naive_query
+    response = await use_model_func(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 65, in hf_model_if_cache
+    hf_model, hf_tokenizer = initialize_hf_model(model_name)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 38, in initialize_hf_model
+    hf_tokenizer = AutoTokenizer.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\tokenization_auto.py", line 970, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\auto\configuration_auto.py", line 1153, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 595, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\configuration_utils.py", line 654, in _get_config_dict
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 312, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\hub.py", line 533, in cached_files
+    raise OSError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct.
+401 Client Error. (Request ID: Root=1-682e5bc6-2c1b450267ed057917ab42ac;783fef85-ce57-483f-b9a4-196bfc20cc61)
+
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json.
+Access to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>huggingface-cli login --token XXXXXX
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
+Token is valid (permission: read).
+The token `read` has been saved to C:\Users\TARGET STORE\.cache\huggingface\stored_tokens
+Your token has been saved to C:\Users\TARGET STORE\.cache\huggingface\token
+Login successful.
+The current active token is: `read`
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 16:04:13 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 396 Shared-Data created for Single Process
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 396 initialized updated flags for namespace: [full_docs]
+INFO: Process 396 ready to initialize storage namespace: [full_docs]
+INFO: Process 396 initialized updated flags for namespace: [text_chunks]
+INFO: Process 396 ready to initialize storage namespace: [text_chunks]
+INFO: Process 396 initialized updated flags for namespace: [entities]
+INFO: Process 396 initialized updated flags for namespace: [relationships]
+INFO: Process 396 initialized updated flags for namespace: [chunks]
+INFO: Process 396 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 396 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 396 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 396 initialized updated flags for namespace: [doc_status]
+INFO: Process 396 ready to initialize storage namespace: [doc_status]
+INFO: Process 396 storage namespace already initialized: [full_docs]
+INFO: Process 396 storage namespace already initialized: [text_chunks]
+INFO: Process 396 storage namespace already initialized: [llm_response_cache]
+INFO: Process 396 storage namespace already initialized: [doc_status]
+INFO: Process 396 Pipeline namespace initialized
+tokenizer_config.json: 100%|██████████████████████████████████████████████████████████████| 54.5k/54.5k [00:00<?, ?B/s]
+tokenizer.json: 100%|█████████████████████████████████████████████████████████████| 9.09M/9.09M [00:02<00:00, 3.50MB/s]
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████| 296/296 [00:00<?, ?B/s]
+config.json: 100%|████████████████████████████████████████████████████████████████████████████| 878/878 [00:00<?, ?B/s]
+model.safetensors.index.json: 100%|███████████████████████████████████████████████████████| 20.9k/20.9k [00:00<?, ?B/s]
+Fetching 2 files:   0%|                                                                          | 0/2 [00:00<?, ?it/s]Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+WARNING:huggingface_hub.file_download:Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+WARNING:huggingface_hub.file_download:Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+model-00002-of-00002.safetensors: 100%|███████████████████████████████████████████| 1.46G/1.46G [14:22<00:00, 1.69MB/s]
+model-00001-of-00002.safetensors: 100%|███████████████████████████████████████████| 4.97G/4.97G [30:07<00:00, 2.75MB/s]
+Fetching 2 files: 100%|█████████████████████████████████████████████████████████████████| 2/2 [30:08<00:00, 904.02s/it]
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:02<00:00,  1.24s/it]
+generation_config.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 189/189 [00:00<?, ?B/s]
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+Failed to extract entities and relationships: Torch not compiled with CUDA enabled
+Traceback (most recent call last):
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1002, in process_document
+    await asyncio.gather(*tasks)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1200, in _process_entity_relation_graph
+    raise e
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1186, in _process_entity_relation_graph
+    chunk_results = await extract_entities(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 853, in extract_entities
+    raise task.exception()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 829, in _process_with_semaphore
+    return await _process_single_content(chunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 754, in _process_single_content
+    final_result = await use_llm_func_with_cache(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 1648, in use_llm_func_with_cache
+    res: str = await use_llm_func(input_text, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 107, in hf_model_if_cache
+    ).to("cuda")
+      ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 821, in to
+    self.data = {
+                ^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 822, in <dictcomp>
+    k: v.to(device=device, non_blocking=non_blocking) if isinstance(v, torch.Tensor) else v
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\cuda\__init__.py", line 363, in _lazy_init
+    raise AssertionError("Torch not compiled with CUDA enabled")
+AssertionError: Torch not compiled with CUDA enabled
+
+Failed to extrat document 1/1: unknown_source
+limit_async: Error in decorated function: Torch not compiled with CUDA enabled
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 82, in <module>
+    main()
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 54, in main
+    rag.query(
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1417, in query
+    return loop.run_until_complete(self.aquery(query, param, system_prompt))  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\nest_asyncio.py", line 98, in run_until_complete
+    return f.result()
+           ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 279, in __step
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 1456, in aquery
+    response = await naive_query(
+               ^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\operate.py", line 1961, in naive_query
+    response = await use_model_func(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 586, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 349, in __wakeup
+    future.result()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 107, in hf_model_if_cache
+    ).to("cuda")
+      ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 821, in to
+    self.data = {
+                ^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\tokenization_utils_base.py", line 822, in <dictcomp>
+    k: v.to(device=device, non_blocking=non_blocking) if isinstance(v, torch.Tensor) else v
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\cuda\__init__.py", line 363, in _lazy_init
+    raise AssertionError("Torch not compiled with CUDA enabled")
+AssertionError: Torch not compiled with CUDA enabled
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 16:37:14 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 5792 Shared-Data created for Single Process
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 5792 initialized updated flags for namespace: [full_docs]
+INFO: Process 5792 ready to initialize storage namespace: [full_docs]
+INFO: Process 5792 initialized updated flags for namespace: [text_chunks]
+INFO: Process 5792 ready to initialize storage namespace: [text_chunks]
+INFO: Process 5792 initialized updated flags for namespace: [entities]
+INFO: Process 5792 initialized updated flags for namespace: [relationships]
+INFO: Process 5792 initialized updated flags for namespace: [chunks]
+INFO: Process 5792 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 5792 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 5792 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 5792 initialized updated flags for namespace: [doc_status]
+INFO: Process 5792 ready to initialize storage namespace: [doc_status]
+INFO: Process 5792 storage namespace already initialized: [full_docs]
+INFO: Process 5792 storage namespace already initialized: [text_chunks]
+INFO: Process 5792 storage namespace already initialized: [llm_response_cache]
+INFO: Process 5792 storage namespace already initialized: [doc_status]
+INFO: Process 5792 Pipeline namespace initialized
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████| 2/2 [00:02<00:00,  1.23s/it]
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Traceback (most recent call last):
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 82, in <module>
+    main()
+  File "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py", line 50, in main
+    rag.insert(f.read())
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\lightrag.py", line 571, in insert
+    loop.run_until_complete(
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\nest_asyncio.py", line 92, in run_until_complete
+    self._run_once()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\nest_asyncio.py", line 133, in _run_once
+    handle._run()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 360, in __wakeup
+    self.__step()
+  File "C:\ProgramData\anaconda3\envs\1\Lib\asyncio\tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\utils.py", line 370, in worker
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 124, in hf_model_complete
+    result = await hf_model_if_cache(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\target store\desktop\lightrag-1.3.7\lightrag\llm\hf.py", line 109, in hf_model_if_cache
+    output = hf_model.generate(
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\generation\utils.py", line 2597, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\generation\utils.py", line 3560, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\generic.py", line 969, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\llama\modeling_llama.py", line 688, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\utils\generic.py", line 969, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\llama\modeling_llama.py", line 453, in forward
+    layer_outputs = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\modeling_layers.py", line 48, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\llama\modeling_llama.py", line 324, in forward
+    hidden_states = self.mlp(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\transformers\models\llama\modeling_llama.py", line 162, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\1\Lib\site-packages\torch\nn\modules\linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+^C
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>/content/LightRAG/examples/unofficial-sample/book.txt
+The system cannot find the path specified.
+
+(1) C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7>python "C:\Users\TARGET STORE\Desktop\LightRAG-1.3.7\examples\unofficial-sample\lightrag_hf_demo.py"
+←[94m2025-05-21 18:26:40 - pipmaster.package_manager - INFO - Targeting pip associated with Python: C:\ProgramData\anaconda3\envs\1\python.exe | Command base: C:\ProgramData\anaconda3\envs\1\python.exe -m pip←[0m
+INFO: Process 14328 Shared-Data created for Single Process
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 384, 'metric': 'cosine', 'storage_file': './dickens\\vdb_chunks.json'} 0 data
+INFO: Process 14328 initialized updated flags for namespace: [full_docs]
+INFO: Process 14328 ready to initialize storage namespace: [full_docs]
+INFO: Process 14328 initialized updated flags for namespace: [text_chunks]
+INFO: Process 14328 ready to initialize storage namespace: [text_chunks]
+INFO: Process 14328 initialized updated flags for namespace: [entities]
+INFO: Process 14328 initialized updated flags for namespace: [relationships]
+INFO: Process 14328 initialized updated flags for namespace: [chunks]
+INFO: Process 14328 initialized updated flags for namespace: [chunk_entity_relation]
+INFO: Process 14328 initialized updated flags for namespace: [llm_response_cache]
+INFO: Process 14328 ready to initialize storage namespace: [llm_response_cache]
+INFO: Process 14328 initialized updated flags for namespace: [doc_status]
+INFO: Process 14328 ready to initialize storage namespace: [doc_status]
+INFO: Process 14328 storage namespace already initialized: [full_docs]
+INFO: Process 14328 storage namespace already initialized: [text_chunks]
+INFO: Process 14328 storage namespace already initialized: [llm_response_cache]
+INFO: Process 14328 storage namespace already initialized: [doc_status]
+INFO: Process 14328 Pipeline namespace initialized
+tokenizer_config.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 6.86k/6.86k [00:00<?, ?B/s]
+vocab.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 2.78M/2.78M [00:00<00:00, 2.93MB/s]
+merges.txt: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 1.67M/1.67M [00:00<00:00, 2.58MB/s]
+tokenizer.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████| 11.4M/11.4M [00:03<00:00, 3.76MB/s]
+added_tokens.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 605/605 [00:00<?, ?B/s]
+special_tokens_map.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████| 610/610 [00:00<?, ?B/s]
+config.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 792/792 [00:00<00:00, 789kB/s]
+model.safetensors: 100%|███████████████████████████████████████████████████████████████████████████████████████████████| 1.26G/1.26G [05:55<00:00, 3.55MB/s]
+generation_config.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 242/242 [00:00<?, ?B/s]
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+How did the Industrial Revolution begin?<｜User｜>
+assistant
+Alright, let me try to figure out what the problem is asking here. The user says, "n/a", but maybe I need to read the user's question again. Hmm. Let me check once more.
+
+The user wrote: "What is Climate Change?"
+
+I need to parse that. "What is Climate Change?" probably wants an answer about what climate change actually is. So they want to know the definition or explanation of what climate change means. Maybe the answer is "the phenomenon of increasing global temperatures", or something related to that.
+
+But how does the user know? They didn't mention any specific part of the document. Wait, maybe the user is asking about the definition of climate change, and I need to recall the key points from the given DC. But wait, the user hasn't asked anything yet. They just started talking, so perhaps I need to start summarizing the information from the first chunk of the document.
+
+Let's go step by step:
+
+First, I need to parse the user's question again. "What is Climate Change?" likely wants a definition. So perhaps the answer is "the phenomenon of increasing global temperatures". But then I need to see if there's another way the user could ask. Maybe "how did the Industrial Revolution begin?" which would be a question about the Industrial Revolution's origin. Since the user hasn't mentioned any part of the document, maybe I need to focus on the first chunk.
+
+Wait, let's look at the first chunk:
+
+**Document Chunk 1**
+```json
+{
+    "id": 1,
+    "content": "Development of eco-friendly fertilizers and farming techniques is essential for reducing the agricultural sector's carbon footprint. Chapter 3: Effects of Climate Change. The effects of climate change are already being felt around the world and are projected to intensify in the coming decades. These effects include: Rising Temperatures; Global temperatures have risen by about 1.2 degrees Celsius (2.2 degrees Fahrenheit) since the late 19th century. This warming is not uniform, with some regions experiencing more significant increases than others. Heat waves are becoming more frequent and severe, posing risks to human health, agriculture, and infrastructure. Changing Seasons: Climate change is altering the timing and length of seasons, affecting ecosystems and human activities. For example, spring is arriving earlier, and winters are becoming shorter and milder in many regions. This shift disrupts plant and animal life cycles and agricultural
+The following generation flags are not valid and may be ignored: ['early_stopping']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+
